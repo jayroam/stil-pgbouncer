@@ -1,0 +1,12 @@
+<% if @dbhash -%>
+<%  @dbhash.each do |db,attrs| -%>
+<%  passhash = Digest::MD5.hexdigest( "#{attrs['password']}#{attrs['user-name']}" )-%>
+<%=   %Q|"#{attrs['user-name']}" "md5#{passhash}"| %>
+<%  end -%>
+<% end -%>
+<% if @rolehash -%>
+<%  @rolehash.each do |user,unused| -%>
+<%  passhash = Digest::MD5.hexdigest( "#{user['password']}#{user}" )-%>
+<%=   %Q|"#{user}" "md5#{passhash}"| %>
+<%  end -%>
+<% end -%>
