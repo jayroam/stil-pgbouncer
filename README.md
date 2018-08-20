@@ -79,8 +79,12 @@ are Known Issues, you might want to include them under their own heading here.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+In order to properly run the rspec tests I had to perform the following steps from the module root directory:
+
+* bundle install
+* bundle exec rspec-puppet-init
+* Update the Rakefile with the defined content
+* Run the tests with: bundle exec rake spec
 
 ## Release Notes/Contributors/Etc. **Optional**
 
