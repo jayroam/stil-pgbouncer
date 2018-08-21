@@ -1,4 +1,4 @@
-# STIL pgbouncer modul
+# Main class
 #
 class pgbouncer (
   String                $version        = 'installed',
@@ -15,28 +15,8 @@ class pgbouncer (
   String                $run_dir        = '/run/pgbouncer',
 ) {
 
-  # Opretter brugeren til pgbouncer
-  if $manage_user {
-    accounts::account { 'pgbouncer':
-      require => Class['accounts'],
-    }
-  }
-
-  # Installation
-  package { 'pgdg-redhat10-10-2.noarch':
-    provider => 'rpm',
-    ensure   => installed,
-    source   => "https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-redhat10-10-2.noarch.rpm",
-  }
-
-  package { 'pgbouncer':
-    provider => 'yum',
-    ensure   => $version,
-    require  => [
-      Package['pgdg-redhat10-10-2.noarch'],
-      Accounts::Account['pgbouncer'],
-    ]
-  }
+  contain pgbouncer::prepare
+  contain pgbouncer::install
 
   # Styring af den primære konfigurationsfil
   file { "${config_dir}/pgbouncer.ini":
