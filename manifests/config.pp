@@ -15,8 +15,8 @@ class pgbouncer::config {
   $list_of_dirs = [$pgbouncer::logfile_dir, $pgbouncer::run_dir]
   file { $list_of_dirs:
     ensure  => directory,
-    owner   => pgbouncer,
-    group   => pgbouncer,
+    owner   => $pgbouncer::user,
+    group   => $pgbouncer::group,
     mode    => '0744',
     require => File[
       ["${pgbouncer::config_dir}/pgbouncer.ini"],

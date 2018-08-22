@@ -46,8 +46,8 @@
 ;;; Administrative settings
 ;;;
 
-logfile = <%= @logfile_dir %>/pgbouncer.log
-pidfile = <%= @run_dir %>/pgbouncer.pid
+logfile = <%= @pgbouncer::logfile_dir %>/pgbouncer.log
+pidfile = <%= @pgbouncer::run_dir %>/pgbouncer.pid
 
 ;;;
 ;;; Where to wait for clients
